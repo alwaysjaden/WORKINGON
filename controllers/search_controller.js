@@ -1,4 +1,4 @@
-const buildMe = require('../service/constructor.js');
+const buildMe = require('../models/');
 const request = require("request");
 
 
