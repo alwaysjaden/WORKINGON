@@ -1,10 +1,36 @@
-const router = require("express").Router();
-const searchContorller = require("../../controllers/search_controller");
 
-// Matches with "/api/books"
-router.route("/investors")
-  .get(searchContorller.search)
 
-// Matches with "/api/books/:id"
 
-module.exports = router;
+module.exports = (searchInput) => {
+    let options = {
+        method: 'POST',
+        url: "https://api.hubapi.com/crm/v3/objects/contacts/search",
+        qs: {hapikey: YOUR_HUBSPOT_API_KEY},
+        headers: {accept: 'application/json', 'content-type': 'application/json'},
+        body: {
+            query: searchInput,
+            properties: [ 
+                "firstname", 
+                "lastname",
+                "jobtitle",
+                "phone",
+                "email",
+                "address", 
+                "state", 
+                "city",
+                "zip",
+                "contact_type",
+                "cs_do_not_call",
+                "cs_do_not_email",
+                "cs_is_active",
+                "cs_is_accredited",
+                "cs_is_investor",
+                "cs_average_investment_amount",
+                "cs_is_registered"
+            ],
+        },
+        json: true
+    };
+    return options;
+}
+
